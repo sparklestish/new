@@ -49,7 +49,7 @@ $("#register").click(function(){
 	
 	else 
 	   {
-	    
+	   $("#register").val('validating your info...');
 		 $.post("http://moneyboxapp.envisiongh.net/register.php",{ firstname1: firstname, lastname1: lastname, email1: email, phone1: phone, password1:password},
 		  function(data) {
 		   if(data=='success')

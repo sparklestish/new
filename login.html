@@ -36,7 +36,7 @@
 
 <form id="loginform" name="login-form" method="GET"> <div> 
 <label class="label-form light" for="tel-field">PHONENUMBER</label> 
-<input class="w-input input-form light" id="phone" type="text" name="phone"   placeholder="enter phonenumber" data-name="phone" required> 
+<input class="w-input input-form light" id="phone" type="text" name="phone" max="10" maxlength="10"  placeholder="enter phonenumber" data-name="phone" required> 
 <div class="errormess"></div>
 <div class="separator-fields"></div>
 </div>
@@ -100,11 +100,26 @@
 						$(".w-form-done").css("margin-bottom", "15px");
 						$(".w-form-done").css("padding", "10px");
 						$(".w-form-done").css("background-color", "#E21C3C");
-						$(".w-form-done").html('<p style="color: #ffffff;">You have not yet activated your account.Please contact support.</p>');
+						$(".w-form-done").html('<p style="color: #ffffff;">You have entered a wrong phone number or password. Please try again</p>');
 						//alert("Login error");
 						setTimeout(function() {
 						$('.w-form-done').fadeOut('slow');
-						}, 30000);
+						}, 2000);
+						$("#login").val('Sign In');
+				        } 
+						else if(data.success == 'null') 
+				        {  
+				          $(".w-form-done").css("display", "block");
+						$(".w-form-done").css("margin-bottom", "15px");
+						$(".w-form-done").css("padding", "10px");
+						$(".w-form-done").css("background-color", "#E21C3C");
+						$(".w-form-done").html('<p style="color: #ffffff;">You have not yet activated your account.Please activate now.</p>');
+						//alert("Login error");
+						var URL1 = "activate.html";
+						setTimeout(function() {
+						$('.w-form-done').fadeOut('slow');
+						window.location = URL1; 
+						}, 2000);
 						$("#login").val('Sign In');
 				        } 
 				        else { 

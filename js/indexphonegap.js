@@ -79,6 +79,7 @@ function onFail(message) {
     //alert('Failed because: ' + message);
 }
 
+
 function upload() {
     var img = document.getElementById('image');
     var imageURI = img.src;

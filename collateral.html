@@ -95,6 +95,10 @@ document.getElementById('email').value = jd.email;
 
      var settingslink = document.getElementById('settingslink'); //or grab it by tagname etc
     settingslink.href = "settings.html?phone="+phone+"&password="+password;
+	
+		
+			 var checkstatuslink = document.getElementById('checkstatuslink'); //or grab it by tagname etc
+		checkstatuslink.href = "checkstatus.html?phone="+jd.phone+"&password="+jd.password;
  //document.getElementById('phone').value = jd.phone;
              //     $('#stage2').append('<p>  ' + jd.what + '</p>');
              // $('#stage3').append('<p > ' + jd.date+ ' at ' + jd.time+ ' | Venue:' + jd.location+'</p>');
@@ -106,12 +110,12 @@ document.getElementById('email').value = jd.email;
           //});
       });
 
-          $.getJSON('http://moneybox.envisiongh.net/getcollateral_loan.php', function(ls) {  
-              $('#showmess1').append('<p>'+ls.fees+'</p>');
-       document.getElementById('fees').value = ls.fees;
-document.getElementById('interest').value = ls.interest;
+       //   $.getJSON('http://moneybox.envisiongh.net/getcollateral_loan.php', function(ls) {  
+      //        $('#showmess1').append('<p>'+ls.fees+'</p>');
+    //   document.getElementById('fees').value = ls.fees;
+//document.getElementById('interest').value = ls.interest;
 
-      });
+     // });
 
 
    });
@@ -132,7 +136,7 @@ document.getElementById('interest').value = ls.interest;
  </div>
 <div class="nav-menu-titles">Home Page</div></a>  
  
-  <a class="w-clearfix w-inline-block nav-menu-link"  href="#" data-load="1"> 
+  <a class="w-clearfix w-inline-block nav-menu-link" id="checkstatuslink" href="" data-load="1"> 
  <div class="icon-list-menu"> 
  <div class="icon ion-android-checkmark-circle"></div>
  </div>
@@ -198,27 +202,30 @@ document.getElementById('interest').value = ls.interest;
   <hr>
   <div><br><br></div>
  <div> <label class="label-form" for="full-name-field">ITEM NAME</label> 
- <input class="w-input input-form" id="item_name" type="text" name="item_name"  required="required"> <div class="separator-fields"></div>
+ <input class="w-input input-form" id="item_name" type="text" name="item_name"  required> <div class="separator-fields"></div>
  </div>
  
 
 
   <div> <label class="label-form" for="full-name-field">ITEM IMAGE</label> </div>
     <div style="margin-top: 10px;"> 
-     <button class="w-button action-button" style="border-radius: 10px; background-color: #ffbf00;"  onclick="capturePhoto(); return false;">Take a picture</button>
+     <button class="w-button action-button" style="border-radius: 10px; background-color: #ffbf00;" name="getcameraimage" value="" onclick="capturePhoto(); return false;">Take a picture</button>
 
      <div style="position: relative; border: 1px solid #fff; width: 40px; border-radius: 100px; background-color: #6e9300; color:#ffffff; padding: 8px 8px 8px 8px; margin-top: -10px; margin-left: auto; margin-right: auto;">OR</div>
    
-    <button class="w-button action-button" style="border-radius: 10px; margin-top:-15px;" onclick="getPhoto(pictureSource.PHOTOLIBRARY); return false;">Upload from gallery</button>
+    <button class="w-button action-button" style="border-radius: 10px; margin-top:-15px;" name="getphotoalbumimage" value="" onclick="getPhoto(pictureSource.PHOTOLIBRARY); return false;">Upload from gallery</button>
 
 
     </div>
 
-    <div style="margin-top: 20px;">
+    <div class="image" style="margin-top: 20px;">
     <span id="camera_status" name="camera_status"></span><br>
-     <img style="width:150px; height: 150px; display:block;" id="image"  src="" />
+     <img style="width:150px; height: 150px; display:block;" name="img" id="image"  src="" />
      <input type="hidden" id="item_image" value="">
      </div>
+<script>
+ alert(imageURI);
+</script>
 
      <br>
      <!-- <small style="color: #f00;">To save your image, please click the save button below and continue filling the fields.</small> -->
@@ -228,21 +235,71 @@ document.getElementById('interest').value = ls.interest;
  </div> -->
  </div> 
 
-<script type="text/javascript">
-  $(document).ready(function()
-{
-  $('#image').change(function() {
-    $('#item_image').val($(this).val());
-});
-  });
-</script>
-
-
 
 
  <div> <label class="label-form" >DESCRIPTION</label> 
- <textarea class="w-input input-form" id="item_desc"  name="item_desc" required="required" cols="7" rows="3"> </textarea><div class="separator-fields"></div>
+ <textarea class="w-input input-form" id="item_desc"  name="item_desc" required="required" cols="7" rows="3"></textarea><div class="separator-fields"></div>
  </div>
+ 
+ <br>
+ 
+ 
+ 
+  <div> 
+ <label class="label-form" for="node-10">BRAND</label> 
+ <br>
+ <div class="separator-fields"></div>
+ <select class="w-select input-form select" name="brand" id="brand" required="required"> 
+ <option value="">Select one...</option> 
+ <option value="Samsung" selected="selected">Samsung</option> 
+ <option value="Windows">Windows</option> 
+  <option value="Hp">Hp</option> 
+   <option value="Blackberry">Blackberry</option> 
+    <option value="Acer">Acer</option> 
+   <option value="Lg">Lg</option> 
+    <option value="Toshiba">Toshiba</option> 
+     <option value="Infinix">Infinix</option> 
+      <option value="Techno">Techno</option> 
+     <option value="Itel">Itel</option> 
+ </select>
+ </div>
+   <div>
+ <div class="separator-fields"></div>
+ </div>
+  <div>
+ <div class="separator-fields"></div>
+ </div>
+ <br>
+
+   <div> 
+ <label class="label-form" for="node-10">CATEGORY</label> 
+ <br>
+ <div class="separator-fields"></div>
+ <select class="w-select input-form select" name="category" id="category" required="required"> 
+ <option value="">Select one...</option> 
+ <option value="Male" selected="selected">Mobile Phones</option> 
+ <option value="Laptops">Laptops</option> 
+  <option value="Books">Books</option> 
+   <option value="House">House</option> 
+    <option value="Cars">Cars</option> 
+   <option value="Shoe">Shoe</option> 
+    <option value="Dresses / Clothes">Dresses / Clothes</option> 
+ </select>
+ </div>
+ 
+ <br>
+ 
+  <div> 
+
+   
+ <label class="label-form" for="node-10">CONDITION</label> 
+ <div class="separator-fields"></div>
+ <select class="w-select input-form select" name="condition" id="condition" required="required"> 
+ <option value="">Select one...</option> 
+ <option value="Brand New" selected="selected">Brand New</option> <option value="Used">Used</option> 
+ </select>
+ </div>
+ 
  
  <br>
   <div> 
@@ -272,26 +329,9 @@ document.getElementById('interest').value = ls.interest;
  <br>
  
  
-   <div> 
- <label class="label-form" for="node-10">BRAND</label> 
- <br>
- <div class="separator-fields"></div>
- <select class="w-select input-form select" name="brand" id="brand" required="required"> 
- <option value="">Select one...</option> 
- <option value="Samsung" selected="selected">Samsung</option> 
- <option value="Windows">Windows</option> 
-  <option value="Hp">Hp</option> 
-   <option value="Blackberry">Blackberry</option> 
-    <option value="Acer">Acer</option> 
-   <option value="Lg">Lg</option> 
-    <option value="Toshiba">Toshiba</option> 
-     <option value="Infinix">Infinix</option> 
-      <option value="Techno">Techno</option> 
-     <option value="Itel">Itel</option> 
- </select>
- </div>
+  
  
- <br>
+  
  
  <div>
 
@@ -299,33 +339,7 @@ document.getElementById('interest').value = ls.interest;
 
  </div>
  
-   <div> 
- <label class="label-form" for="node-10">CATEGORY</label> 
- <br>
- <div class="separator-fields"></div>
- <select class="w-select input-form select" name="category" id="category" required="required"> 
- <option value="">Select one...</option> 
- <option value="Male" selected="selected">Mobile Phones</option> 
- <option value="Laptops">Laptops</option> 
-  <option value="Books">Books</option> 
-   <option value="House">House</option> 
-    <option value="Cars">Cars</option> 
-   <option value="Shoe">Shoe</option> 
-    <option value="Dresses / Clothes">Dresses / Clothes</option> 
- </select>
- </div>
- 
- <br>
-  <div> 
-   <br>
-   
- <label class="label-form" for="node-10">CONDITION</label> 
- <div class="separator-fields"></div>
- <select class="w-select input-form select" name="condition" id="condition" required="required"> 
- <option value="">Select one...</option> 
- <option value="Brand New" selected="selected">Brand New</option> <option value="Used">Used</option> 
- </select>
- </div>
+
  
 
 
@@ -335,52 +349,35 @@ document.getElementById('interest').value = ls.interest;
  <label class="label-form" for="email-field">LOAN AMOUNT REQUESTED</label> 
  <input class="w-input input-form" id="loanamount" type="text"  name="loanamount" required="required"> <div class="separator-fields"></div>
 
-   <div> 
- <label class="label-form" for="field">NO OF DAYS</label>
- <input class="w-input input-form" id="termofdays" name="termofdays" type="text" > <div class="separator-fields"></div>
- </div>
 
- </div>
- <div> 
- <label class="label-form" for="password-ield">FEES</label>
- <input class="w-input input-form" id="fees" type="text" readonly> <div class="separator-fields"></div>
- </div>
- <div> 
- <label class="label-form" for="field">INTEREST</label>
- <input class="w-input input-form"  id="interest" type="text" readonly > <div class="separator-fields"></div>
- </div>
 
-  <div> 
- <label class="label-form" for="field">TOTAL</label>
- <input class="w-input input-form" id="totalamount" name="totalamount" type="text" readonly> <div class="separator-fields"></div>
  </div>
 
 
 
- <div class="separator-fields"></div>
- <div> <div class="separator-fields">
- </div>
- </div>
- <div>
- <div class="separator-fields"></div>
- </div>
  
-<input class="w-button action-button"  onclick="upload();" type="submit" data-wait="Please wait..."> 
- </form> 
- <script type="text/javascript">
-      $(document).ready(function()
-{
-    $('#totalamount').focus(function()
-    {
-        var f = +$('#fees').val();
-        var a = +$('#loanamount').val();
-        var ri = +$('#interest').val();
-        var te = +$('#termofdays').val();
-        var ai = (ri / 100);
-        var t = ((ri * 100) / (f * te) + a);
-    
-        $('[name=totalamount]').val(t);
 
+ 
+<input class="w-button action-button" id="collateral" onclick="upload();" type="submit" > 
+ </form> 
+
+
+ <script type="text/javascript">
+  $(document).ready(function() {
+    $('form > input').keyup(function() {
+
+        var empty = false;
+        $('form > input').each(function() {
+            if ($(this).val() == '') {
+                empty = true;
+            }
+        });
+
+        if (empty) {
+            $('#collateral').attr('disabled', 'disabled');
+        } else {
+            $('#collateral').removeAttr('disabled');
+        }
     });
 });
 </script>
